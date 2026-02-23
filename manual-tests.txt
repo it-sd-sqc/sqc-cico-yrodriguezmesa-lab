@@ -62,3 +62,25 @@ Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command lin
 * Should display "Developer" for the user name.
 
 
+# Module 4: Automating black-box testing and branching 
+#4-7. CiCo: Use branches: Ticket 402
+
+## Test steps
+1. Build and run CiCo.
+2. Click inside the card number field.
+3. Type 99999999.
+4. Try typing another digit.
+5. Click Update.
+
+## Expected results
+* The field accepts the first 8 digits and does not allow any more digits to appear after this.
+
+## Test steps
+1. Build and run CiCo.
+2. Click inside the card number field.
+3. Type 00000000.
+4. Try typing another digit.
+5. Click Update.
+
+## Expected results
+* The field allows the input of up to 8 digits and does not allow more than this amount.
