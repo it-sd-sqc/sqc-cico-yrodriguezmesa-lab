@@ -84,3 +84,24 @@ Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command lin
 
 ## Expected results
 * The field allows the input of up to 8 digits and does not allow more than this amount.
+
+# Module 5: Testing program flows and creating pull requests
+#5-8. CiCo: Use your existing repository: Ticket 501
+
+## Test steps
+1. Build and run CiCo.
+2. Enter 00000000 into the field.
+3. Click Update.
+4. Click the "Next" button.
+
+## Expected results
+* After clicking on Update, the next window should appear with a button that says next.
+
+## Test steps
+1. Build and run CiCo.
+2. Enter 00000000 into the field.
+3. Click Update.
+4. Wait for the window to return to the main panel
+
+## Expected results
+* The program should function as it normally does and return to the main panel after a couple of seconds.
