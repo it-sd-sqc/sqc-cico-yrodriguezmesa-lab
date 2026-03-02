@@ -301,7 +301,12 @@ public class Main {
     labelState.setAlignmentX(JComponent.CENTER_ALIGNMENT);
     labelState.setForeground(Color.magenta);
     panelStatus.add(labelState);
-
+    // Assigment Module 5-8. CiCo: Use your existing repository
+    JButton buttonNext = new JButton("Next");
+    buttonNext.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+    buttonNext.addActionListener(handler);
+    panelStatus.add(buttonNext);
+    //End of the assigment
     panelStatus.add(Box.createVerticalGlue());
 
     // Error panel ////////////////////////////////////////////////////////////
