@@ -41,32 +41,27 @@ public class Main {
     public void insertString(FilterBypass fb, int offset, String stringToAdd, AttributeSet attr)
         throws BadLocationException
     {
-      if (fb.getDocument() != null) {
-        super.insertString(fb, offset, stringToAdd, attr);
-      }
-      else {
-        Toolkit.getDefaultToolkit().beep();
-      }
+      super.insertString(fb, offset, stringToAdd, attr);
+      checkLengthAndSubmit(fb);
     }
 
     @Override
     public void replace(FilterBypass fb, int offset, int lengthToDelete, String stringToAdd, AttributeSet attr)
         throws BadLocationException
     {
-      if (fb.getDocument() != null) {
-        super.replace(fb, offset, lengthToDelete, stringToAdd, attr);
-      }
-      else {
-        Toolkit.getDefaultToolkit().beep();
-      }
+      super.replace(fb, offset, lengthToDelete, stringToAdd, attr);
+      checkLengthAndSubmit(fb);
     }
-  }
 
-  // Lookup the card information after button press ///////////////////////////
-  public static class Update implements ActionListener {
-    public void actionPerformed(ActionEvent evt) {
-      Main.processCard();
+    private void checkLengthAndSubmit(FilterBypass fb)
+          throws BadLocationException
+    {
+      int length = fb.getDocument().getLength();
+      if(length == MAX_LENGTH) {
+        SwingUtilities.invokeLater(() -> Main.processCard());
+      }
     }
+
   }
 
   // Revert to the main panel after a button press ////////////////////////////
@@ -105,7 +100,6 @@ public class Main {
   static JLabel labelReason;
   static JLabel labelUser;
   static JLabel labelState;
-  static JButton buttonAcknowledge;
 
   // Timer variables //////////////////////////////////////////////////////////
   static java.util.Timer timer;
@@ -183,7 +177,7 @@ public class Main {
     };
 
     labelReason.setText(explanations[code]);
-    scheduleTransitionFrom(CARD_ERROR, buttonAcknowledge);
+    scheduleTransitionFrom(CARD_ERROR, null);
   }
 
   // Create an idle timer and display the target card /////////////////////////
@@ -260,11 +254,6 @@ public class Main {
     fieldNumber.setForeground(Color.magenta);
     panelMain.add(fieldNumber);
 
-    JButton updateButton = new JButton("Update");
-    updateButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-    updateButton.addActionListener(new Update());
-    updateButton.setForeground(Color.green);
-    panelMain.add(updateButton);
 
     panelMain.add(Box.createVerticalGlue());
 
@@ -306,12 +295,6 @@ public class Main {
     labelReason.setForeground(Color.yellow);
     panelError.add(labelReason);
 
-    buttonAcknowledge = new JButton("OK");
-    buttonAcknowledge.addActionListener(handler);
-    buttonAcknowledge.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-    buttonAcknowledge.setForeground(Color.red);
-    panelError.add(buttonAcknowledge);
-    panelError.add(Box.createVerticalGlue());
 
     // Add the cards //////////////////////////////////////////////////////////
     deck.add(panelMain, CARD_MAIN);

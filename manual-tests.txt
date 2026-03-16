@@ -61,4 +61,14 @@ Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command lin
 ## Expected results
 * Should display "Developer" for the user name.
 
+# Module 6: Auto-submit card number when last digit is entered
 
+## Test steps
+1. Build and run CiCo.
+2. Type a valid card number into the card input field.
+3. Do not press Enter.
+
+## Expected results
+* After the final digit is typed, the form automatically submits.
+* The Update button is no longer present.
+* The correct panel transition occurs as if Enter has been pressed.
